@@ -1,0 +1,15 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+    <a href="{{ path('homepage') }}" class="btn btn-sm btn-default pull-right">Retour à la liste</a>
+
+    <h2>{{ category.name }}</h2>
+    
+    {% for article in articles %}
+        <a href="{{ path('article_show', {id: article.id, slug: article.slug}) }}">
+            <h4>{{ article.title }}</h4>
+        </a>
+    {% endfor %}
+    <p>
+   
+{% endblock %}

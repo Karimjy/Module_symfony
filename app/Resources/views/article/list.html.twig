@@ -1,0 +1,38 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+      <h2>Catgeory</h2>
+
+   {% for category in categories %}
+        <a href="/?cat={{category.id}}">
+            <span>{{ category.name }} </span>
+        </a>
+        <span> / </span>
+    {% endfor %}
+    
+    {% if filtercategory is defined and filtercategory is not empty %}
+            <p>
+                 {{ filtercategory.name }}
+            </p>
+        {% endif %}
+   
+    <h2>Articles</h2>
+
+    {% for article in articles %}
+        <a href="{{ path('article_show', {id: article.id, slug: article.slug}) }}">
+            <h4>{{ article.title }}</h4>
+            
+        </a>
+        {% if article.category is defined and article.category is not empty %}
+            <span>
+                Category: {{ article.category.name }}
+            </span>
+        {% endif %}
+        <p>
+            {{ article.content[:20] }}...
+        </p>
+        {% if not loop.last %}
+            <hr>
+        {% endif %}
+    {% endfor %}
+{% endblock %}

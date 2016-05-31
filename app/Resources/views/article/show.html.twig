@@ -1,0 +1,39 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+    <a href="{{ path('homepage') }}" class="btn btn-sm btn-default pull-right">Retour à la liste</a>
+
+    <h2>{{ article.title }}</h2>
+    <p>
+        {{ article.content|nl2br }}
+    </p>
+    <hr>
+    Auteur: {{ article.email }}
+    <hr>
+    {% if article.category is defined and article.category is not empty%}
+    Category:
+    <a href="{{ path('category_show', {id: article.category.id}) }}">
+        <span>{{ article.category.name }} </span>
+    </a>
+    {% endif %}
+
+    
+{#
+    <h4>Commentaires</h4>
+
+    {% for message in app.session.flashBag.get('success') %}
+        <div class="alert alert-success" role="alert">
+            {{ message }}
+        </div>
+    {% endfor %}
+
+    {% for comment in article.comments %}
+        <blockquote>
+            <p>{{ comment.message|nl2br }}</p>
+            <small>Par {{ comment.email }} le {{ comment.date|date('d/m/Y H:i') }}</small>
+        </blockquote>
+    {% else %}
+        <div class="alert alert-warning" role="alert">Soyez le premier à commenter !</div>
+    {% endfor %}
+    {{ form(commentForm, {attr: {novalidate: 'novalidate'}}) }}#}
+{% endblock %}
